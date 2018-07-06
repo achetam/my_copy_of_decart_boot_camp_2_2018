@@ -1,0 +1,1063 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{numeric\_data\_characterization}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    DeCART Summer School for Biomedical Data Science
+
+\hypertarget{basic-numeric-data-characterization}{%
+\section{Basic Numeric Data
+Characterization}\label{basic-numeric-data-characterization}}
+
+Numpy provides a number of functions/methods for characterizing
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{os}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{utils}
+        \PY{k+kn}{import} \PY{n+nn}{numpy}\PY{n+nn}{.}\PY{n+nn}{random} \PY{k}{as} \PY{n+nn}{ra}
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k+kn}{from} \PY{n+nn}{quizzes}\PY{n+nn}{.}\PY{n+nn}{characterizing\PYZus{}numeric\PYZus{}data} \PY{k}{import} \PY{o}{*}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{pd}\PY{o}{.}\PY{n}{\PYZus{}\PYZus{}version\PYZus{}\PYZus{}}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}3}]:} '0.23.1'
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{DATADIR} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{expanduser}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZti{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{DATA}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{HRDIR} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{DATADIR}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Numerics}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mimic2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{hr}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{subjects}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{BPDIR} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{DATADIR}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Numerics}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{mimic2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{bp}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{subjects}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{n}{hr\PYZus{}files} \PY{o}{=} \PY{n}{os}\PY{o}{.}\PY{n}{listdir}\PY{p}{(}\PY{n}{HRDIR}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{heart-rate-file-for-patient-3325}{%
+\subsection{\texorpdfstring{Heart Rate file for patient
+\texttt{3325}}{Heart Rate file for patient 3325}}\label{heart-rate-file-for-patient-3325}}
+
+We are going to start with using
+\href{http://pandas.pydata.org/}{Pandas} to read, summarize, and
+visualize numeric data. We are going to start with the MIMIC2 patient
+\texttt{\#3325}. This is what the first five lines of the file looks
+like (You can explore this in the Linux shell with less, more, or cat.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{88}
+\DecValTok{84}
+\DecValTok{87}
+\DecValTok{78}
+\DecValTok{85}
+\end{Highlighting}
+\end{Shaded}
+
+Pandas has two basic functions for reading in tabular data:
+\href{https://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_table.html}{\texttt{read\_table}}
+and
+{[}\texttt{read\_csv}{]}(https://pandas.pydata.org/pandas-docs/stable/generat
+
+ed/pandas.read\_csv.html). They are really the smae function with
+different default values for the delimiter, the character that is used
+to separate the data on each row: (a tab (\texttt{\textbackslash{}t})
+character for \texttt{read\_table} and a comma (\texttt{,}) for
+\texttt{read\_csv}. We will use \texttt{read\_table} to read in the
+heart rate values.
+
+Both of these functions swill return a
+\href{https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html}{Pandas
+DataFrame} which is a \textgreater{}Two-dimensional size-mutable,
+potentially heterogeneous tabular data structure with labeled axes (rows
+and columns).
+
+Going back to an earlier analogy, a data structure is a complex molecule
+of data.
+
+A Pandas DataFrame is an object (everything is an object), and so it has
+attributes and methods. Two of the methods we will use right off the bat
+are
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.head.html\#pandas.DataFrame.head}{\texttt{head()}}
+\item
+  \href{https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.tail.html\#pandas.DataFrame.tail}{\texttt{tail()}}
+\end{itemize}
+
+which return the first (last) n (default=5) rows of the DataFrame.
+
+\hypertarget{read-in-the-data-and-look-at-the-head}{%
+\subsubsection{Read in the data and look at the
+head}\label{read-in-the-data-and-look-at-the-head}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{hr} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}table}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{HRDIR}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3235.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        \PY{n}{hr}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}7}]:}    88
+        0  84
+        1  87
+        2  78
+        3  85
+        4  80
+\end{Verbatim}
+            
+    The DataFrame provides an \textbf{index} for each row (e.g.
+\(0, 1, 2, \cdots\)). It will also display the label (name) for each
+column.
+
+\hypertarget{does-anything-seem-wrong}{%
+\subsubsection{Does anything seem
+wrong?}\label{does-anything-seem-wrong}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{hr}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{hr}\PY{o}{.}\PY{n}{size}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} ((482, 1), 482)
+\end{Verbatim}
+            
+    \hypertarget{reread-the-data-specifying-what-to-use-for-the-header}{%
+\subsubsection{Reread the data, specifying what to use for the
+header}\label{reread-the-data-specifying-what-to-use-for-the-header}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{hr} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}table}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{HRDIR}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3235.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{header}\PY{o}{=}\PY{k+kc}{None}\PY{p}{)}
+        \PY{n}{hr}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}9}]:}     0
+        0  88
+        1  84
+        2  87
+        3  78
+        4  85
+\end{Verbatim}
+            
+    This looks better but zero for a column label/name is not very
+meaningful. We can provide names to use for the columns with a
+\texttt{names} keyword argument.
+
+\hypertarget{reread-the-data-providing-a-name-for-the-heart-rate-column}{%
+\subsubsection{Reread the data providing a name for the heart rate
+column}\label{reread-the-data-providing-a-name-for-the-heart-rate-column}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{hr} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}table}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{HRDIR}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3235.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{header}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{heart\PYZus{}rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{p}{]}\PY{p}{)}
+         \PY{n}{hr}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}10}]:}    heart\_rate
+         0          88
+         1          84
+         2          87
+         3          78
+         4          85
+\end{Verbatim}
+            
+    \hypertarget{dataframe-attributes}{%
+\subsubsection{DataFrame Attributes}\label{dataframe-attributes}}
+
+DataFrames have attributes that describe it, including
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{shape}: shape of the frame
+\item
+  \texttt{size}: total number of elements in the frame
+\item
+  \texttt{dtypes}: the data types for each column in the frame
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{hr}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{hr}\PY{o}{.}\PY{n}{size}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{hr}\PY{o}{.}\PY{n}{dtypes}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(483, 1) 483
+heart\_rate    int64
+dtype: object
+
+    \end{Verbatim}
+
+    \hypertarget{exercise}{%
+\subsection{Exercise}\label{exercise}}
+
+Use the Pandas \texttt{read\_table}function to read in the blood
+pressure data for the same patient (\texttt{3235}). Answer the following
+questions:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  How many rows are in the blood pressure data frame?
+\item
+  What data type (e.g.~np.uint8) is used for the first column (systolic)
+  of measurements?
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{data\PYZus{}shape}\PY{p}{(}\PY{l+m+mi}{485}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:} 'You provided the correct number of rows'
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{n}{bp} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}table}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{BPDIR}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3235.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{header}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{systolic}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{diastolic}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{p}{]}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{bp}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{bp}\PY{o}{.}\PY{n}{size}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{bp}\PY{o}{.}\PY{n}{dtypes}\PY{p}{)}
+         \PY{n}{bp}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(485, 2) 970
+systolic     int64
+diastolic    int64
+dtype: object
+
+    \end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:}    systolic  diastolic
+         0       128         68
+         1       128         69
+         2       129         74
+         3       100         54
+         4       108         56
+\end{Verbatim}
+            
+    \hypertarget{compute-summary-statistics}{%
+\paragraph{Compute summary
+statistics}\label{compute-summary-statistics}}
+
+We can compute summary statistics on a Pandas DataFrame or Series using
+either a numpy function or a method of the DataFrame or Series.
+
+\hypertarget{how-do-we-know-what-numpy-functions-are-defined-or-what-methods-a-dataframe-has}{%
+\subsubsection{How do we know what numpy functions are defined or what
+methods a DataFrame
+has?}\label{how-do-we-know-what-numpy-functions-are-defined-or-what-methods-a-dataframe-has}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n+nb}{print}\PY{p}{(}\PY{n}{hr}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+heart\_rate    303
+dtype: int64
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{hr}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}26}]:} heart\_rate    303
+         dtype: int64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{n}{np}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{n}{hr}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{heart\PYZus{}rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:} 303
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{hr}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{heart\PYZus{}rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}28}]:} 303
+\end{Verbatim}
+            
+    \hypertarget{exercise}{%
+\subsection{Exercise}\label{exercise}}
+
+What is the median value of the diastolic blood pressure for patient
+3235?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}46}]:} \PY{n}{median\PYZus{}diastolic}\PY{p}{(}\PY{n}{bp}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{diastolic}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{median}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}print(bp[\PYZdq{}diastolic\PYZdq{}].median())}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}46}]:} 'You provided the correct median value'
+\end{Verbatim}
+            
+    \hypertarget{python-aside}{%
+\subsubsection{Python Aside}\label{python-aside}}
+
+It can often become confusing of what variables (including functions)
+are alive and well in your workspace. Python provides some functions for
+exploring this question:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{dir()}
+\item
+  \texttt{globals()}
+\item
+  \texttt{locals()}
+\end{itemize}
+
+IPython provides magics for this \texttt{\%who} and \texttt{\%whos}
+
+I find keeping track of variables in Jupyter notebooks more important
+than in traditional scripting because I end up with a lot of global
+variables.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{o}{\PYZpc{}}\PY{k}{who}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+BPDIR	 DATADIR	 HRDIR	 assert\_equal	 bp	 data\_shape	 data\_types	 hr	 hr\_files	 
+median\_diastolic	 np	 numbers	 os	 pd	 ra	 utils	 
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{o}{\PYZpc{}}\PY{k}{whos}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Variable           Type         Data/Info
+-----------------------------------------
+BPDIR              str          /home/achetam/DATA/Numerics/mimic2/bp/subjects
+DATADIR            str          /home/achetam/DATA
+HRDIR              str          /home/achetam/DATA/Numerics/mimic2/hr/subjects
+assert\_equal       method       <bound method TestCase.as<{\ldots}>al.Dummy testMethod=nop>>
+bp                 DataFrame         systolic  diastolic\textbackslash{}<{\ldots}>n\textbackslash{}n[485 rows x 2 columns]
+data\_shape         function     <function data\_shape at 0x7f412c9530d0>
+data\_types         function     <function data\_types at 0x7f412c953158>
+hr                 DataFrame         heart\_rate\textbackslash{}n0       <{\ldots}>n\textbackslash{}n[483 rows x 1 columns]
+hr\_files           list         n=3903
+median\_diastolic   function     <function median\_diastolic at 0x7f412bc5fbf8>
+np                 module       <module 'numpy' from '/op<{\ldots}>kages/numpy/\_\_init\_\_.py'>
+numbers            module       <module 'numbers' from '/<{\ldots}>ib/python3.5/numbers.py'>
+os                 module       <module 'os' from '/opt/c<{\ldots}>nda/lib/python3.5/os.py'>
+pd                 module       <module 'pandas' from '/o<{\ldots}>ages/pandas/\_\_init\_\_.py'>
+ra                 module       <module 'numpy.random' fr<{\ldots}>umpy/random/\_\_init\_\_.py'>
+utils              module       <module 'utils' from '/ho<{\ldots}>ot\_camp\_2\_2018/utils.py'>
+
+    \end{Verbatim}
+
+    \hypertarget{exercise}{%
+\subsection{Exercise}\label{exercise}}
+
+To explore equality of floating point numbers, perturb your answer by
+adding \texttt{0.1}, \texttt{0.01}, etc. until your perturbed answer is
+considered equal.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}63}]:} \PY{n}{median\PYZus{}diastolic}\PY{p}{(}\PY{n}{bp}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{diastolic}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{median}\PY{p}{(}\PY{p}{)} \PY{o}{+} \PY{l+m+mf}{0.000000000000001}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}63}]:} 'You provided the correct median value'
+\end{Verbatim}
+            
+    \hypertarget{describe}{%
+\subsection{\texorpdfstring{\href{https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.describe.html}{\texttt{describe()}}}{describe()}}\label{describe}}
+
+Pandas DataFrames (Series) come with a \texttt{describe()} method that
+provides summary statistics.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}64}]:} \PY{n}{hr}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}64}]:}        heart\_rate
+         count  483.000000
+         mean    92.857143
+         std     14.398532
+         min     75.000000
+         25\%     85.000000
+         50\%     90.000000
+         75\%     99.000000
+         max    303.000000
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}66}]:} \PY{n}{bp}\PY{o}{.}\PY{n}{describe}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}66}]:}          systolic   diastolic
+         count  485.000000  485.000000
+         mean   112.554639   53.513402
+         std     15.861865    6.555416
+         min     36.000000   31.000000
+         25\%    101.000000   50.000000
+         50\%    113.000000   54.000000
+         75\%    122.000000   57.000000
+         max    166.000000   79.000000
+\end{Verbatim}
+            
+    \hypertarget{creating-a-new-column}{%
+\subsection{Creating a New Column}\label{creating-a-new-column}}
+
+We can create a new column in the DataFrame with a simple assignment
+statement:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}67}]:} \PY{n}{hr}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{one}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+         \PY{n}{hr}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{range}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{hr}\PY{p}{)}\PY{p}{)}
+         \PY{n}{hr}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{inverse range}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{hr}\PY{p}{)}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{hr}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}67}]:}    heart\_rate  one  range  inverse range
+         0          88    1      0            483
+         1          84    1      1            482
+         2          87    1      2            481
+         3          78    1      3            480
+         4          85    1      4            479
+\end{Verbatim}
+            
+    We can also create a new column based on a function of the existing
+columns.
+
+We can do this in two ways
+
+\hypertarget{method-1}{%
+\subsubsection{Method 1}\label{method-1}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}68}]:} \PY{n}{hr}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{range\PYZus{}diff}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{hr}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{inverse range}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{hr}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{range}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}
+         \PY{n}{hr}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}68}]:}    heart\_rate  one  range  inverse range  range\_diff
+         0          88    1      0            483         483
+         1          84    1      1            482         481
+         2          87    1      2            481         479
+         3          78    1      3            480         477
+         4          85    1      4            479         475
+\end{Verbatim}
+            
+    \hypertarget{method-2}{%
+\subsubsection{Method 2}\label{method-2}}
+
+Our second method uses the \href{}{\texttt{apply()}} method and a
+function. For this, I frequently use
+\href{https://docs.python.org/3/tutorial/controlflow.html\#lambda-expressions}{\textbf{anonymous
+function}}.
+
+\hypertarget{anonymous-functions}{%
+\paragraph{Anonymous Functions}\label{anonymous-functions}}
+
+The syntax for anonymous functions is as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lambda}\NormalTok{ variable(s): some_function_of_the_variable(s)}
+\end{Highlighting}
+\end{Shaded}
+
+So an anonymous doubling function would be
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lambda}\NormalTok{ x: }\DecValTok{2}\OperatorTok{*}\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+Here is an anonymous function that returns the upper case version of a
+string
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{lambda}\NormalTok{ y: y.upper()}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{pandas-apply}{%
+\paragraph{\texorpdfstring{Pandas
+\texttt{apply()}}{Pandas apply()}}\label{pandas-apply}}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{apply()} applies a function to each element in the DataFrame
+  (Series)
+\item
+  We specify whether we want to apply the function by columns or rows by
+  specifying the keyword argument \texttt{axis} (which defaults to 0 for
+  columns)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Remembering to set \texttt{axis} is very important and something I
+    frequently to do
+  \end{itemize}
+\item
+  When we apply by rows, we get a variable that contains each row; we
+  can access specific columns within the row
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}69}]:} \PY{n}{hr}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{range\PYZus{}diff2}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{n}{hr}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda}  \PY{n}{row}\PY{p}{:} \PY{n}{row}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{range\PYZus{}diff}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{row}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{range}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} 
+                                      \PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{hr}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}69}]:}    heart\_rate  one  range  inverse range  range\_diff  range\_diff2
+         0          88    1      0            483         483          483
+         1          84    1      1            482         481          480
+         2          87    1      2            481         479          477
+         3          78    1      3            480         477          474
+         4          85    1      4            479         475          471
+\end{Verbatim}
+            
+    \hypertarget{exercise}{%
+\subsection{Exercise:}\label{exercise}}
+
+\href{http://scikit-learn.org/stable/modules/preprocessing.html}{Data
+standardization} transforms numeric data (\(x\)) by subtracting the mean
+(\(\mu_x\)) and dividing by the standard deviation (\(\sigma_x\)):
+
+\[\tilde{x} = \frac{x-\mu_x}{\sigma_x}\]
+
+Read in one of the heart rate data files and compute the standardized
+form of the data. Assign this normalized heart rate to the DataFrame
+with a label of \textbf{``normalized hr''}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}73}]:} \PY{n}{hr} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}table}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{HRDIR}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3236.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{header}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{heart\PYZus{}rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{p}{]}\PY{p}{)}
+         \PY{n}{hr}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}73}]:}    heart\_rate
+         0          83
+         1          77
+         2          86
+         3          82
+         4          81
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}81}]:} \PY{n}{hr}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{standardized\PYZus{}hr}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{hr}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{heart\PYZus{}rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{hr}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{heart\PYZus{}rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{hr}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{heart\PYZus{}rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+         \PY{n}{hr}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}81}]:}    heart\_rate  standardized  standardized\_hr
+         0          83     -0.066635        -0.066635
+         1          77     -0.899576        -0.899576
+         2          86      0.349835         0.349835
+         3          82     -0.205459        -0.205459
+         4          81     -0.344282        -0.344282
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}85}]:} \PY{n}{hr}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{heart\PYZus{}rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{n}{hr}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{heart\PYZus{}rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+         \PY{n}{hr}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{standardized}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{p}{,} \PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}85}]:}      heart\_rate  standardized\_hr
+         0            83        -0.066635
+         1            77        -0.899576
+         2            86         0.349835
+         3            82        -0.205459
+         4            81        -0.344282
+         5            84         0.072188
+         6            83        -0.066635
+         7            85         0.211012
+         8            85         0.211012
+         9            87         0.488659
+         10           88         0.627482
+         11           90         0.905129
+         12           88         0.627482
+         13           88         0.627482
+         14           86         0.349835
+         15           85         0.211012
+         16           83        -0.066635
+         17           81        -0.344282
+         18           80        -0.483106
+         19           80        -0.483106
+         20           82        -0.205459
+         21           80        -0.483106
+         22           78        -0.760753
+         23           80        -0.483106
+         24           71        -1.732517
+         25           66        -2.426634
+         26           68        -2.148988
+         27           71        -1.732517
+         28           72        -1.593694
+         29           92         1.182776
+         ..          {\ldots}              {\ldots}
+         120          81        -0.344282
+         121          77        -0.899576
+         122          81        -0.344282
+         123          82        -0.205459
+         124          87         0.488659
+         125          88         0.627482
+         126          87         0.488659
+         127          98         2.015717
+         128          89         0.766306
+         129          84         0.072188
+         130          84         0.072188
+         131          83        -0.066635
+         132          86         0.349835
+         133          90         0.905129
+         134          92         1.182776
+         135          90         0.905129
+         136          92         1.182776
+         137          88         0.627482
+         138          87         0.488659
+         139          90         0.905129
+         140          84         0.072188
+         141          82        -0.205459
+         142          84         0.072188
+         143          86         0.349835
+         144          78        -0.760753
+         145          78        -0.760753
+         146          79        -0.621929
+         147          73        -1.454870
+         148          70        -1.871341
+         149          77        -0.899576
+         
+         [150 rows x 2 columns]
+\end{Verbatim}
+            
+    \hypertarget{exercise}{%
+\subsection{Exercise}\label{exercise}}
+
+The student's t-test is often used to comapre two populations. Using
+\texttt{len}, \texttt{math.sqrt} and numpy methods/functions compute the
+\href{https://en.wikipedia.org/wiki/Student\%27s_t-test\#Independent_two-sample_t-test}{t
+value} for two files.
+
+\[t = \frac{\bar{{X_1}}-\bar{X_2}}{s_{X_1X_2}\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}\]
+where
+\[s_{X_1X_2} = \sqrt{\frac{(n_1-1)s_{X_1}^2 + (n_2-1)s_{X_2}^2}{n_1+n_2-2}}\].
+1. Pick two heart rate files and comptue the t value for the two files.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}91}]:} \PY{n}{hr2} \PY{o}{=} \PY{n}{hr} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}table}\PY{p}{(}\PY{n}{os}\PY{o}{.}\PY{n}{path}\PY{o}{.}\PY{n}{join}\PY{p}{(}\PY{n}{HRDIR}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{3220.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} \PY{n}{header}\PY{o}{=}\PY{k+kc}{None}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{heart\PYZus{}rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{p}{]}\PY{p}{)}
+         \PY{n}{hr}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+        ---------------------------------------------------------------------------
+
+        FileNotFoundError                         Traceback (most recent call last)
+
+        <ipython-input-91-fe851ac97fd7> in <module>()
+    ----> 1 hr2 = hr = pd.read\_table(os.path.join(HRDIR,'3228.txt'), header=None, names=["heart\_rate",])
+          2 hr.head()
+
+
+        /opt/conda/lib/python3.5/site-packages/pandas/io/parsers.py in parser\_f(filepath\_or\_buffer, sep, delimiter, header, names, index\_col, usecols, squeeze, prefix, mangle\_dupe\_cols, dtype, engine, converters, true\_values, false\_values, skipinitialspace, skiprows, nrows, na\_values, keep\_default\_na, na\_filter, verbose, skip\_blank\_lines, parse\_dates, infer\_datetime\_format, keep\_date\_col, date\_parser, dayfirst, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, escapechar, comment, encoding, dialect, tupleize\_cols, error\_bad\_lines, warn\_bad\_lines, skipfooter, doublequote, delim\_whitespace, low\_memory, memory\_map, float\_precision)
+        676                     skip\_blank\_lines=skip\_blank\_lines)
+        677 
+    --> 678         return \_read(filepath\_or\_buffer, kwds)
+        679 
+        680     parser\_f.\_\_name\_\_ = name
+
+
+        /opt/conda/lib/python3.5/site-packages/pandas/io/parsers.py in \_read(filepath\_or\_buffer, kwds)
+        438 
+        439     \# Create the parser.
+    --> 440     parser = TextFileReader(filepath\_or\_buffer, **kwds)
+        441 
+        442     if chunksize or iterator:
+
+
+        /opt/conda/lib/python3.5/site-packages/pandas/io/parsers.py in \_\_init\_\_(self, f, engine, **kwds)
+        785             self.options['has\_index\_names'] = kwds['has\_index\_names']
+        786 
+    --> 787         self.\_make\_engine(self.engine)
+        788 
+        789     def close(self):
+
+
+        /opt/conda/lib/python3.5/site-packages/pandas/io/parsers.py in \_make\_engine(self, engine)
+       1012     def \_make\_engine(self, engine='c'):
+       1013         if engine == 'c':
+    -> 1014             self.\_engine = CParserWrapper(self.f, **self.options)
+       1015         else:
+       1016             if engine == 'python':
+
+
+        /opt/conda/lib/python3.5/site-packages/pandas/io/parsers.py in \_\_init\_\_(self, src, **kwds)
+       1706         kwds['usecols'] = self.usecols
+       1707 
+    -> 1708         self.\_reader = parsers.TextReader(src, **kwds)
+       1709 
+       1710         passed\_names = self.names is None
+
+
+        pandas/\_libs/parsers.pyx in pandas.\_libs.parsers.TextReader.\_\_cinit\_\_()
+
+
+        pandas/\_libs/parsers.pyx in pandas.\_libs.parsers.TextReader.\_setup\_parser\_source()
+
+
+        FileNotFoundError: File b'/home/achetam/DATA/Numerics/mimic2/hr/subjects/3228.txt' does not exist
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}90}]:} \PY{n}{hr2}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{standardized\PYZus{}hr}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{hr2}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{heart\PYZus{}rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{hr2}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{heart\PYZus{}rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)} \PY{o}{/} \PY{n}{hr2}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{heart\PYZus{}rate}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{p}{)}
+         \PY{n}{hr2}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}90}]:}    heart\_rate  standardized\_hr
+         0          99         1.052707
+         1         102         1.487272
+         2         102         1.487272
+         3         101         1.342417
+         4         100         1.197562
+\end{Verbatim}
+            
+    {University of Uah Data Science for Health} by {Brian E. Chapman} is
+licensed under a Creative Commons Attribution-NonCommercial-ShareAlike
+4.0 International License.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
